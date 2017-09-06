@@ -6,11 +6,18 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import { CircularProgress } from 'material-ui/Progress';
 
 const styles = theme => ({
   root: {
     width: '100%',
     background: theme.palette.background.paper
+  },
+  progress: {
+    margin: `${theme.spacing.unit * 2}px`,
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)'
   }
 });
 
@@ -91,7 +98,7 @@ class TodoList extends React.Component {
     const { classes, toggleTodo, todos, isFetching, errorMessage } = this.props;
 
     if (isFetching && !todos.length) {
-      return <p>Loading...</p>;
+      return <CircularProgress className={classes.progress} />;
     }
 
     if (errorMessage && !todos.length) {
